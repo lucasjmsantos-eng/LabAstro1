@@ -1,0 +1,82 @@
+<!DOCTYPE html> 
+<html lang="pt-BR"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>LabAstro</title> 
+    <style> 
+        body{ margin:0; font-family:Arial, sans-serif; background:#050816; color:white; } 
+        header{ background:#0d1b2a; padding:20px; text-align:center; } 
+        h1{ color:#ffd700; } 
+        .busca{ text-align:center; margin:20px; } 
+        .busca input{ width:60%; padding:10px; border-radius:10px; border:none; } 
+        .simuladores{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:20px; } 
+        .card{ background:#132238; border-radius:15px; overflow:hidden; transition:0.3s; } 
+        .card:hover{ transform:scale(1.05); } 
+        .card img{ width:100%; height:180px; object-fit:cover; } 
+        .card h2{ text-align:center; } 
+        .card p{ padding:10px; } 
+        .card a{ display:block; text-align:center; background:#ffd700; color:black; padding:10px; text-decoration:none; font-weight:bold; } 
+        footer{ text-align:center; padding:20px; background:#0d1b2a; } 
+    </style> 
+</head> 
+<body> 
+    <header> 
+        <h1>LabAstro</h1> 
+        <p>Laboratório Virtual de Astronomia</p> 
+    </header> 
+    
+    <div class="busca"> 
+        <input type="text" id="pesquisa" placeholder="Pesquisar simulação..." onkeyup="buscar()"> 
+    </div> 
+    
+    <section class="simuladores" id="lista">
+        <div class="card">
+            <img src="canhao-newton.png" alt="Canhão de Newton">
+            <h2>Canhão de Newton</h2>
+            <p>Experimento mental criado por Isaac Newton.</p>
+            <a href="canhao-newton.html">Abrir</a>
+        </div>
+
+        <div class="card">
+            <img src="orbitas.png" alt="Órbitas">
+            <h2>Órbitas</h2>
+            <p>Estude os tipos de Órbitas.</p>
+            <a href="orbitas.html">Abrir</a>
+        </div>
+
+        <div class="card">
+            <img src="gravitacao.png" alt="Gravitação">
+            <h2>Gravitação</h2>
+            <p>Simule a gravidade entre dois corpos.</p>
+            <a href="gravitacao.html">Abrir</a>
+        </div>
+    </section>
+
+    <footer> © 2026 LabAstro </footer> 
+
+    <script> 
+        function buscar(){ 
+            let filtro = document.getElementById("pesquisa").value
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, "")
+                            .toUpperCase(); 
+            
+            let cards = document.getElementsByClassName("card"); 
+            
+            for(let i = 0; i < cards.length; i++){ 
+                let texto = cards[i].textContent
+                                .normalize('NFD')
+                                .replace(/[\u0300-\u036f]/g, "")
+                                .toUpperCase(); 
+                
+                if(texto.indexOf(filtro) > -1){ 
+                    cards[i].style.display = ""; 
+                } else { 
+                    cards[i].style.display = "none"; 
+                } 
+            } 
+        } 
+    </script> 
+</body> 
+</html>
